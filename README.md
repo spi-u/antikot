@@ -5,7 +5,6 @@
 ###### Образ создается долго (~5 минут).
 
 ## Запускаем контейнер для разработки
- Для linux систем:
 `docker run --rm --name="antikot-dev" --net=host -v $PWD:/app -v /var/run/docker.sock:/var/run/docker.sock -it antikot-dev-image bash`
 
  Запустится bash-строка (дополнительное окно можно вызвать так же командой docker `docker exec -it antikot-dev`).
