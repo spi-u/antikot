@@ -9,14 +9,23 @@
 
  Запустится bash-строка (дополнительное окно можно вызвать так же командой docker `docker exec -it antikot-dev`).
 
- Из контейнера запускаем `docker-compose up -d` для запуска Postgres13:9.
+ Из контейнера запускаем контейнер с PostgreSQL: `docker-compose up -d`.
 
- Входим в виртуальное окружение `pipenv shell`
+## Разработка
+Входим в виртуальное окружение `pipenv shell`.
 
- Устанавливаем зависимости из окружение `pipenv install`
+Устанавливаем зависимости:
 
- Серверную часть приложения (FastAPI) можно запустить через honcho: `honcho start` (см. Procfile). Или выполнив `cd server && uvicorn main:app --reload`. Разворачивается на 8000 порту.
+`pipenv install`
 
-## Разработка (серверная часть - FastApi).
-Зависимости устанавливаем из окружения в докер контейнере. 
-`pipenv install <package name>`
+`npm i`
+
+Для запуска приложения:
+`honcho start`. При этом одновременно запускается бэк на 8000 порту и фронт на 3000 (см. Procfile).
+
+Для установки новых python-зависимостей используем:
+`pipenv install <package name>`.
+
+
+
+
