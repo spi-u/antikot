@@ -12,11 +12,9 @@
  Из контейнера запускаем контейнер с PostgreSQL: `docker-compose up -d`.
 
 ## Разработка
-Входим в виртуальное окружение `pipenv shell`.
+`python -m venv venv`
 
-Устанавливаем зависимости:
-
-`pipenv install`
+`pip install -r requirements.txt`
 
 `npm i`
 
@@ -24,7 +22,7 @@
 `honcho start`. При этом одновременно запускается бэк на 8000 порту и фронт на 3000 (см. Procfile).
 
 Для установки новых python-зависимостей используем:
-`pipenv install <package name>`.
+`pip install <package>`
 
 
 
