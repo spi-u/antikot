@@ -24,7 +24,10 @@
 `honcho start`. При этом одновременно запускается бэк на 8000 порту и фронт на 3000 (см. Procfile).
 
 Для установки новых python-зависимостей используем:
-`pip install <package>`
+`pip install <package> && pip freeze > requirements.txt`
+
+После добавления пакетов в окружение делаем комит requirements.txt
+
 
 
 
