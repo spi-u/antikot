@@ -1,7 +1,9 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+#from pydantic import BaseModel
+from typing import Union
 
-import crud, models, schemas
+import crud, models, schemas, json
 from database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
@@ -17,6 +19,61 @@ def get_db():
     finally:
         db.close()
 
+fakedbtasks =\
+{
+    "illness":
+    {
+        "id": 1,
+        "name": "ОРВИ"
+    },
+    "tasks":
+    [
+        {
+            "id": 1,
+            "text": "Укажите ваше обычное артериальное утреннее давление"
+        },
+        {
+            "id": 2,
+            "text": "Были ли у вас симптомы сегодня, на которые вы жаловались ранее?"
+        },
+        {
+            "id": 3,
+            "text": "Есть ли у вас какие-то побочные реакции на лечение, прописанное врачом?"
+        },
+        {
+            "id": 4,
+            "text": "Как вы оцениваете своё самочувствие по шкале от 1 до 10?"
+        },
+        {
+            "id": 5,
+            "text": "Считаете ли вы что вашим родственникам нужна помощь?"
+        },
+    ]
+}
+fakedbans = {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4": "",
+    "5": ""
+}
+
+class Quiz():
+    taskid: str
+    answer: Union[str, None] = None
+
+@app.get("/patient/quiz/")
+def show_quiz():
+    return json.dumps(fakedbtasks, indent = 5)
+
+@app.post("/patient/quiz/")
+def gather_quiz(ans: Quiz):
+
+    pass
+
+@app.get("/doctor/quiz/")
+def show_res():
+    return json.dumps(fakedbans, indent = 5)
 
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
